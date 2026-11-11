@@ -1,9 +1,11 @@
+// document.querySelector('#nombreBiblioteca')
+
 class Libro {
-    constructor(titulo,autor,isbn,_prestado) {
+    constructor(titulo, autor, isbn) {
         this.titulo = titulo,
-        this.autor = autor,
-        this.isbn = isbn,
-        this._prestado = _prestado
+            this.autor = autor,
+            this.isbn = isbn,
+            this._prestado = false;
     }
 
     prestar() {
@@ -12,24 +14,56 @@ class Libro {
     devolver() {
         this._prestado = false
     }
+
     getEstado() {
-        return (this._prestado)
+        if (this._prestado) {
+            return 'Tu libro está PRESTADO';
+        } else {
+            return 'DISPONIBLE tu libro';
+        }
     }
+
 }
 
 const libro = new Libro("Cien años de soledad", "Gabriel García Márquez", "11111");
-            libro.getEstado(); // "Disponible"
-            libro.prestar();
-            libro.getEstado(); // "Prestado"
-
-console.log(libro.getEstado())
-console.log(libro.prestar())
+libro.getEstado(); // "Disponible"
 
 
 
-const biblio = new Biblioteca("Biblioteca Central");
+/*console.log(libro.getEstado());
+libro.prestar();                    // cambia el estado de "Prestado" a "Disponible"
+console.log(libro.getEstado());
+*/
+
+class Biblioteca {
+    constructor(nombre) {
+        this.nombre = nombre;
+        this.libros = [];               // Array para Añadir libros
+    }
+
+    agregarLibro(libro) {
+        this.libros.push(libro);        // Para agregar cada vez un libro en la Biblioteca
+    }
+
+
+
+/*console.log(biblioteca.libros.length);            
+console.log(biblioteca.libros[0].titulo);*/         
+
+
+mostrarLibros() {
+        this.libros.forEach(function (libro) {
+            console.log(`${libro.titulo} | ${libro.autor} | ${libro.isbn} | ${libro.getEstado()}`);
+        });
+    }
+}
+
+const biblioteca = new Biblioteca("Biblioteca Central");
 const libro1 = new Libro("1984", "George Orwell", "12345");
 
-biblio.agregarLibro(libro1);
-biblio.prestarLibro("12345");
-biblio.mostrarLibros(); // muestra el libro como "Prestado"
+biblioteca.agregarLibro(libro1);        // 1984 de George Orwell
+biblioteca.agregarLibro(libro);         // Cien años de soledad de Gabriel Garcia Marquez
+biblioteca.mostrarLibros();
+
+
+
