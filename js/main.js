@@ -66,4 +66,24 @@ biblioteca.agregarLibro(libro);         // Cien años de soledad de Gabriel Garc
 biblioteca.mostrarLibros();
 
 
+console.log(biblioteca.buscarPorISBN("12345"));
+console.log(biblioteca.buscarPorISBN("00000"));
+
+let libroEnBiblioteca = libro.find(function (num) {
+    return prestarLibro(isbn) {                      /* condición */
+    const libros = this.buscarPorISBN(isbn);
+    if (      ) {
+        libro.prestar();
+    } else {
+        console.log('     ');
+    }
+};                                       
+});
+    buscarPorISBN(isbn) {
+        return this.libros.find(function (libro) {
+            return libro.isbn === isbn;
+        });
+    }
+
+
 
